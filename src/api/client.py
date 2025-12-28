@@ -1,34 +1,33 @@
 from functools import lru_cache
+import requests
+from src.api.models import VINDecodeResult
+from src.config import *
+from src.exceptions import APIError, NetworkError
+from src.validation.vin import validate_and_normalize_vin
 
-import requests,json
 
-# config item e.g. PYVIN_VIN_DECODE_EXT_URL
-base_url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/' # should be const somewhere
+@lru_cache(maxsize=CACHE_SIZE)
+def decode_vin_values_extended(vin: str) -> VINDecodeResult:
+    """Decode VIN using NHTSA API. Returns Pydantic model."""
+    normalized_vin = validate_and_normalize_vin(vin)
 
-# config item e.g. PYVIN_RESPONSE_FORMAT
-base_params = {'format': 'json'}
+    url = f"{NHTSA_BASE_URL}/{DECODE_VIN_EXT_ENDPOINT}/{normalized_vin}"
+    params = {"format": DEFAULT_FORMAT}
 
-@lru_cache(maxsize=1000)
-def decode_vin_values_extended(vin:str) -> requests.Response:
-    req_url = base_url + vin
     try:
-        resp = requests.get(url=req_url, params=base_params)
-        return resp
+        resp = requests.get(url, params=params, timeout=REQUEST_TIMEOUT)
+        resp.raise_for_status()
     except requests.RequestException as e:
-        raise Exception(f"Error making request: {e}")
+        raise NetworkError(f"Failed to reach NHTSA API: {e}")
 
-def print_vin_values_extended(resp: requests.Response):
-    if resp.status_code != 200:
-        raise Exception(f"Error decoding VIN: {resp.text}")
-    for k,v in json.loads(resp.text)['Results'][0].items():
-        if len(str(v)) == 0:
-            continue
-        print(k, ": ", v)
+    data = resp.json()
 
-if __name__ == "__main__":
-    vin_to_decode = "19UUA56922A021559"
-    try:
-        response = decode_vin_values_extended(vin_to_decode)
-        print_vin_values_extended(response)
-    except Exception as e:
-        print(f"Error: {e}")
+    if not data.get("Results"):
+        raise APIError("No results returned from API")
+
+    result = VINDecodeResult(**data["Results"][0])
+
+    if result.error_code and result.error_code != "0":
+        raise APIError(f"API Error: {result.error_text}")
+
+    return result
