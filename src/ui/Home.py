@@ -3,7 +3,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="pyVIN - VIN Decoder",
+    page_title="Home - pyVIN",
     page_icon="🚗",
     layout="wide"
 )
@@ -39,14 +39,14 @@ with col1:
     - Safety and equipment information
 
     ### How to Use
-    Navigate to the **Decode** page from the sidebar to start decoding VINs.
+    Navigate to the **VIN Decoder** page from the sidebar to start decoding VINs.
     """)
 
 with col2:
     st.info("""
     **Quick Start**
 
-    1. Click **Decode** in the sidebar
+    1. Click **VIN Decoder** in the sidebar
     2. Enter a 17-character VIN
     3. Click **Decode VIN**
     4. View detailed results
@@ -54,6 +54,7 @@ with col2:
     **Example VIN:**
     `5UXWX7C50BA123456`
     """)
+
 
 st.markdown("---")
 

@@ -96,16 +96,44 @@ class TestDecodeVINValuesExtended:
             decode_vin_values_extended(valid_vin)
 
     @responses.activate
-    def test_api_error_code_nonzero(self, valid_vin):
-        """Test handling when API returns error code"""
+    def test_api_warning_code_returns_result(self, valid_vin):
+        """Test that warning codes (0-99) return result instead of raising"""
+        decode_vin_values_extended.cache_clear()
+        warning_response = {
+            "Count": 1,
+            "Results": [
+                {
+                    "VIN": valid_vin,
+                    "Make": "BMW",
+                    "ErrorCode": "1",
+                    "ErrorText": "Check digit validation failed",
+                }
+            ],
+        }
+        responses.add(
+            responses.GET,
+            f"https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/{valid_vin}",
+            json=warning_response,
+            status=200,
+        )
+
+        # Should return result with warning, not raise
+        result = decode_vin_values_extended(valid_vin)
+        assert result.error_code == "1"
+        assert result.error_text == "Check digit validation failed"
+        assert result.make == "BMW"
+
+    @responses.activate
+    def test_api_critical_error_code_raises(self, valid_vin):
+        """Test that critical error codes (400+) raise exception"""
         decode_vin_values_extended.cache_clear()
         error_response = {
             "Count": 1,
             "Results": [
                 {
                     "VIN": valid_vin,
-                    "ErrorCode": "1",
-                    "ErrorText": "Check digit validation failed",
+                    "ErrorCode": "400",
+                    "ErrorText": "Invalid Characters Present",
                 }
             ],
         }
@@ -116,7 +144,7 @@ class TestDecodeVINValuesExtended:
             status=200,
         )
 
-        with pytest.raises(APIError, match="API Error: Check digit validation failed"):
+        with pytest.raises(APIError, match="API Error: Invalid Characters Present"):
             decode_vin_values_extended(valid_vin)
 
     @responses.activate

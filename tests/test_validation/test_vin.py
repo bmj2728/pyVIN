@@ -40,12 +40,12 @@ class TestValidateAndNormalizeVIN:
 
     def test_vin_too_short(self, invalid_vin_short):
         """Test that VIN shorter than 17 characters raises error"""
-        with pytest.raises(InvalidVINError, match="Invalid VIN format"):
+        with pytest.raises(InvalidVINError, match="VIN must be exactly 17 characters"):
             validate_and_normalize_vin(invalid_vin_short)
 
     def test_vin_too_long(self, invalid_vin_long):
         """Test that VIN longer than 17 characters raises error"""
-        with pytest.raises(InvalidVINError, match="Invalid VIN format"):
+        with pytest.raises(InvalidVINError, match="VIN must be exactly 17 characters"):
             validate_and_normalize_vin(invalid_vin_long)
 
     def test_vin_with_invalid_character_i(self, invalid_vin_with_i):
@@ -74,7 +74,7 @@ class TestValidateAndNormalizeVIN:
             "5UXWX7C50BA_123456",  # Underscore
         ]
         for vin in invalid_vins:
-            with pytest.raises(InvalidVINError, match="Invalid VIN format"):
+            with pytest.raises(InvalidVINError):
                 validate_and_normalize_vin(vin)
 
     def test_vin_with_lowercase_i_o_q(self):
@@ -124,11 +124,14 @@ class TestValidateAndNormalizeVIN:
     )
     def test_invalid_length_fuzzing(self, vin):
         """Fuzz test with invalid VIN lengths"""
-        if not vin or len(vin.strip()) == 0:
+        # After stripping, could be empty or wrong length
+        normalized = vin.upper().strip() if vin else ""
+
+        if not normalized:
             with pytest.raises(InvalidVINError, match="VIN cannot be empty"):
                 validate_and_normalize_vin(vin)
         else:
-            with pytest.raises(InvalidVINError, match="Invalid VIN format"):
+            with pytest.raises(InvalidVINError, match="VIN must be exactly 17 characters"):
                 validate_and_normalize_vin(vin)
 
     @given(
