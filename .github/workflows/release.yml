@@ -8,11 +8,13 @@ on:
 permissions:
   contents: write
   packages: write
+  id-token: write  # Required for trusted publishing
 
 jobs:
   create-release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
+    environment: release
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -63,6 +65,9 @@ jobs:
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
 
   docker-release:
     name: Release Docker Images
