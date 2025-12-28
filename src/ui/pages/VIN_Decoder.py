@@ -9,15 +9,19 @@ from src.exceptions import VINDecoderError
 st.set_page_config(page_title="VIN Decoder - pyVIN", layout="wide")
 
 st.title("🚗 VIN Decoder")
-st.markdown("Enter a 17-character Vehicle Identification Number to decode vehicle information from the NHTSA database.")
+st.markdown(
+    "Enter a 17-character Vehicle Identification Number to decode vehicle information from the NHTSA database."
+)
 
-st.info("💡 **Tip:** VIN must be exactly 17 characters. Use `*` as a wildcard for unknown positions. Example: `5UXWX7C*5*B*A******`")
+st.info(
+    "💡 **Tip:** VIN must be exactly 17 characters. Use `*` as a wildcard for unknown positions. Example: `5UXWX7C*5*B*A******`"
+)
 
 # VIN Input
 vin_input = st.text_input(
     "Vehicle Identification Number",
     placeholder="Enter 17-character VIN (use * for unknowns)...",
-    help="Example: 5UXWX7C50BA123456 or 5UXWX7C*5*B*A****** for partial VIN"
+    help="Example: 5UXWX7C50BA123456 or 5UXWX7C*5*B*A****** for partial VIN",
 ).strip()
 # 5UXWX7C*5*B*A******
 # Decode button
@@ -35,9 +39,13 @@ if st.button("Decode VIN", type="primary", use_container_width=False):
                 if result.error_text and result.error_code and result.error_code != "0":
                     warning_msg = f"⚠️ **Warnings:** {result.error_text}"
                     if result.suggested_vin:
-                        warning_msg += f"\n\n**Suggested VIN:** `{result.suggested_vin}`"
+                        warning_msg += (
+                            f"\n\n**Suggested VIN:** `{result.suggested_vin}`"
+                        )
                     if result.possible_values:
-                        warning_msg += f"\n\n**Possible Values:** {result.possible_values}"
+                        warning_msg += (
+                            f"\n\n**Possible Values:** {result.possible_values}"
+                        )
                     st.warning(warning_msg)
                 else:
                     st.success(f"✅ Successfully decoded VIN: {result.vin}")

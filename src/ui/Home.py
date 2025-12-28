@@ -2,11 +2,7 @@
 
 import streamlit as st
 
-st.set_page_config(
-    page_title="Home - pyVIN",
-    page_icon="🚗",
-    layout="wide"
-)
+st.set_page_config(page_title="Home - pyVIN", page_icon="🚗", layout="wide")
 
 # Header
 st.title("🚗 pyVIN")
@@ -60,4 +56,6 @@ st.markdown("---")
 
 # Footer
 st.caption("© 2025 NovelGit LLC | Data provided by NHTSA vPIC API")
-st.caption("This tool is for informational purposes only. Always verify vehicle information through official sources.")
+st.caption(
+    "This tool is for informational purposes only. Always verify vehicle information through official sources."
+)

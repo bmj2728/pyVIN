@@ -11,7 +11,6 @@ FIELD_LABELS = {
     "make_id": "Make ID",
     "model_id": "Model ID",
     "manufacturer_id": "Manufacturer ID",
-
     # Vehicle Specs
     "body_class": "Body Class",
     "vehicle_type": "Vehicle Type",
@@ -27,7 +26,6 @@ FIELD_LABELS = {
     "bus_floor_config": "Bus Floor Configuration",
     "bus_length": "Bus Length (in)",
     "custom_motorcycle_type": "Custom Motorcycle Type",
-
     # Drivetrain
     "engine_model": "Engine Model",
     "engine_cylinders": "Engine Cylinders",
@@ -37,7 +35,6 @@ FIELD_LABELS = {
     "fuel_type": "Fuel Type",
     "transmission_style": "Transmission Style",
     "drive_type": "Drive Type",
-
     # Safety
     "abs": "ABS",
     "esc": "ESC",
@@ -46,13 +43,11 @@ FIELD_LABELS = {
     "airbag_locations_knee": "Knee Airbag Locations",
     "airbag_locations_seat": "Seat Cushion Airbag Locations",
     "airbag_locations_side": "Side Airbag Locations",
-
     # Manufacturing
     "plant_city": "Plant City",
     "plant_country": "Plant Country",
     "plant_state": "Plant State",
     "plant_company": "Plant Company",
-
     # Errors and Suggestions
     "error_code": "Error Code",
     "error_text": "Error Text",
@@ -71,7 +66,6 @@ FIELD_DESCRIPTIONS = {
     "make_id": "Vehicle make ID",
     "model_id": "Vehicle model ID",
     "manufacturer_id": "Vehicle manufacturer ID",
-
     "body_class": "Vehicle body class",
     "vehicle_type": "Vehicle type",
     "doors": "Number of doors",
@@ -86,7 +80,6 @@ FIELD_DESCRIPTIONS = {
     "bus_floor_config": "Bus floor configuration",
     "bus_length": "Bus length in inches",
     "custom_motorcycle_type": "Custom motorcycle type",
-
     "engine_model": "Engine model",
     "engine_cylinders": "Number of engine cylinders",
     "displacement_liters": "Engine displacement in liters",
@@ -95,7 +88,6 @@ FIELD_DESCRIPTIONS = {
     "fuel_type": "Primary fuel type",
     "transmission_style": "Transmission style",
     "drive_type": "Drive type (FWD, RWD, AWD, etc.)",
-
     "abs": "Anti-lock braking system (ABS) presence",
     "esc": "Electronic stability control (ESC) presence",
     "airbag_locations_front": "Airbag locations in the front",
@@ -103,12 +95,10 @@ FIELD_DESCRIPTIONS = {
     "airbag_locations_knee": "Knee airbag locations",
     "airbag_locations_seat": "Seat cushion airbag locations",
     "airbag_locations_side": "Side airbag locations",
-
     "plant_city": "City where vehicle was manufactured",
     "plant_country": "Country where vehicle was manufactured",
     "plant_state": "State where vehicle was manufactured",
     "plant_company": "Company that manufactured the vehicle",
-
     "error_code": "Error code from NHTSA API",
     "error_text": "Error text from NHTSA API",
     "additional_error_text": "Additional error text from NHTSA API",

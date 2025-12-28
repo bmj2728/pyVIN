@@ -3,7 +3,6 @@
 import pytest
 import responses
 from requests.exceptions import Timeout, ConnectionError
-from hypothesis import given, strategies as st
 from src.api.client import decode_vin_values_extended
 from src.api.models import VINDecodeResult
 from src.exceptions import APIError, NetworkError, InvalidVINError
@@ -54,7 +53,7 @@ class TestDecodeVINValuesExtended:
         # Clear cache first
         decode_vin_values_extended.cache_clear()
 
-        mocker.patch('requests.get', side_effect=Timeout("Connection timeout"))
+        mocker.patch("requests.get", side_effect=Timeout("Connection timeout"))
 
         with pytest.raises(NetworkError, match="Failed to reach NHTSA API"):
             decode_vin_values_extended(valid_vin)
@@ -62,7 +61,7 @@ class TestDecodeVINValuesExtended:
     def test_api_connection_error(self, valid_vin, mocker):
         """Test handling of connection error"""
         decode_vin_values_extended.cache_clear()
-        mocker.patch('requests.get', side_effect=ConnectionError("Connection refused"))
+        mocker.patch("requests.get", side_effect=ConnectionError("Connection refused"))
 
         with pytest.raises(NetworkError, match="Failed to reach NHTSA API"):
             decode_vin_values_extended(valid_vin)

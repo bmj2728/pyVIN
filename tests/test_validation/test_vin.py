@@ -131,7 +131,9 @@ class TestValidateAndNormalizeVIN:
             with pytest.raises(InvalidVINError, match="VIN cannot be empty"):
                 validate_and_normalize_vin(vin)
         else:
-            with pytest.raises(InvalidVINError, match="VIN must be exactly 17 characters"):
+            with pytest.raises(
+                InvalidVINError, match="VIN must be exactly 17 characters"
+            ):
                 validate_and_normalize_vin(vin)
 
     @given(

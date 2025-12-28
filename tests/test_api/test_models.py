@@ -1,7 +1,5 @@
 """Tests for API models module"""
 
-import pytest
-from pydantic import ValidationError
 from hypothesis import given, strategies as st
 from src.api.models import VINDecodeResult
 

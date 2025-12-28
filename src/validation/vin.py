@@ -1,7 +1,7 @@
 import re
 from src.exceptions import InvalidVINError
 
-VIN_PATTERN = re.compile(r'^[A-HJ-NPR-Z0-9*]{17}$')  # * allowed for wildcards
+VIN_PATTERN = re.compile(r"^[A-HJ-NPR-Z0-9*]{17}$")  # * allowed for wildcards
 
 
 def validate_and_normalize_vin(vin: str) -> str:

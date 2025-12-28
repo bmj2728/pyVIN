@@ -1,6 +1,5 @@
 """Tests for field mapping module"""
 
-import pytest
 from hypothesis import given, strategies as st
 from src.formatting.fields import FIELD_LABELS, FIELD_DESCRIPTIONS
 
@@ -89,9 +88,18 @@ class TestFieldLabels:
     def test_units_in_labels(self):
         """Test that units are included in labels where appropriate"""
         # Check that displacement fields have unit indicators
-        assert "L" in FIELD_LABELS["displacement_liters"] or "Liter" in FIELD_LABELS["displacement_liters"]
-        assert "cc" in FIELD_LABELS["displacement_cc"] or "Cubic" in FIELD_LABELS["displacement_cc"]
-        assert "in" in FIELD_LABELS["bed_length_in"] or "inch" in FIELD_LABELS["bed_length_in"].lower()
+        assert (
+            "L" in FIELD_LABELS["displacement_liters"]
+            or "Liter" in FIELD_LABELS["displacement_liters"]
+        )
+        assert (
+            "cc" in FIELD_LABELS["displacement_cc"]
+            or "Cubic" in FIELD_LABELS["displacement_cc"]
+        )
+        assert (
+            "in" in FIELD_LABELS["bed_length_in"]
+            or "inch" in FIELD_LABELS["bed_length_in"].lower()
+        )
 
 
 class TestFieldDescriptions:
@@ -145,7 +153,10 @@ class TestFieldDescriptions:
         for field in drivetrain_fields:
             assert field in FIELD_DESCRIPTIONS
             assert FIELD_DESCRIPTIONS[field]
-            assert "engine" in FIELD_DESCRIPTIONS[field].lower() or "fuel" in FIELD_DESCRIPTIONS[field].lower()
+            assert (
+                "engine" in FIELD_DESCRIPTIONS[field].lower()
+                or "fuel" in FIELD_DESCRIPTIONS[field].lower()
+            )
 
     def test_safety_descriptions_exist(self):
         """Test that safety fields have descriptions"""
@@ -163,7 +174,9 @@ class TestFieldMappingConsistency:
         label_keys = set(FIELD_LABELS.keys())
         desc_keys = set(FIELD_DESCRIPTIONS.keys())
 
-        assert label_keys == desc_keys, f"Mismatched keys: {label_keys.symmetric_difference(desc_keys)}"
+        assert label_keys == desc_keys, (
+            f"Mismatched keys: {label_keys.symmetric_difference(desc_keys)}"
+        )
 
     def test_all_pydantic_model_fields_covered(self):
         """Test that common VINDecodeResult fields are mapped"""
@@ -193,7 +206,9 @@ class TestFieldMappingConsistency:
 
         for field in expected_fields:
             assert field in FIELD_LABELS, f"Field {field} not in FIELD_LABELS"
-            assert field in FIELD_DESCRIPTIONS, f"Field {field} not in FIELD_DESCRIPTIONS"
+            assert field in FIELD_DESCRIPTIONS, (
+                f"Field {field} not in FIELD_DESCRIPTIONS"
+            )
 
     def test_no_duplicate_labels(self):
         """Test that no two fields map to the same label"""

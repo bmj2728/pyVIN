@@ -1,7 +1,13 @@
 from functools import lru_cache
 import requests
 from src.api.models import VINDecodeResult
-from src.config import *
+from src.config import (
+    CACHE_SIZE,
+    DECODE_VIN_EXT_ENDPOINT,
+    DEFAULT_FORMAT,
+    NHTSA_BASE_URL,
+    REQUEST_TIMEOUT,
+)
 from src.exceptions import APIError, NetworkError
 from src.validation.vin import validate_and_normalize_vin
 
@@ -50,7 +56,9 @@ def decode_vin_values_extended(vin: str) -> VINDecodeResult:
     # Only raise error for critical errors (400+), not warnings (0-99)
     if result.error_code:
         try:
-            error_code_int = int(result.error_code.split()[0].split(',')[0])  # Handle "1,11,14" format
+            error_code_int = int(
+                result.error_code.split()[0].split(",")[0]
+            )  # Handle "1,11,14" format
             if error_code_int >= 400:
                 # Critical error - raise exception
                 msg = f"API Error: {result.error_text}"

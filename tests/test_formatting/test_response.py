@@ -1,6 +1,5 @@
 """Tests for response formatting module"""
 
-import pytest
 from hypothesis import given, strategies as st
 from src.formatting.response import filter_non_null
 from src.api.models import VINDecodeResult

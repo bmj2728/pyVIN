@@ -1,8 +1,9 @@
 """Results table component for displaying VIN decode results"""
 
 import streamlit as st
-import pandas as pd
-from typing import Dict, Any
+from typing import Any, Dict
+
+# pandas not needed - using HTML table
 from src.formatting.fields import FIELD_LABELS, FIELD_DESCRIPTIONS
 
 
@@ -29,16 +30,12 @@ def display_results_table(filtered_data: Dict[str, Any]) -> None:
         else:
             field_with_tooltip = label
 
-        display_rows.append({
-            "Field": field_with_tooltip,
-            "Value": str(value)
-        })
+        display_rows.append({"Field": field_with_tooltip, "Value": str(value)})
 
     # Create DataFrame
-    df = pd.DataFrame(display_rows)
-
     # Display as HTML table to support tooltips
-    st.markdown("""
+    st.markdown(
+        """
     <style>
     .results-table {
         width: 100%;
@@ -66,16 +63,18 @@ def display_results_table(filtered_data: Dict[str, Any]) -> None:
         border-bottom: 1px dotted currentColor;
     }
     </style>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
     # Generate HTML table
     table_html = '<table class="results-table">'
-    table_html += '<tr><th>Field</th><th>Value</th></tr>'
+    table_html += "<tr><th>Field</th><th>Value</th></tr>"
 
     for row in display_rows:
-        table_html += f'<tr><td>{row["Field"]}</td><td>{row["Value"]}</td></tr>'
+        table_html += f"<tr><td>{row['Field']}</td><td>{row['Value']}</td></tr>"
 
-    table_html += '</table>'
+    table_html += "</table>"
 
     st.markdown(table_html, unsafe_allow_html=True)
 
