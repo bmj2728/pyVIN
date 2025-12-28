@@ -3,7 +3,7 @@
 [![CI](https://github.com/bmj2728/pyVIN/actions/workflows/ci.yml/badge.svg)](https://github.com/bmj2728/pyVIN/actions/workflows/ci.yml)
 [![Docker Build](https://github.com/bmj2728/pyVIN/actions/workflows/docker.yml/badge.svg)](https://github.com/bmj2728/pyVIN/actions/workflows/docker.yml)
 [![codecov](https://codecov.io/gh/bmj2728/pyVIN/branch/main/graph/badge.svg)](https://codecov.io/gh/bmj2728/pyVIN)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
@@ -55,7 +55,7 @@ A Python-based Vehicle Identification Number (VIN) decoder that provides compreh
 
 ### Prerequisites
 
-- Python 3.9 or higher
+- Python 3.10 or higher
 - pip package manager
 
 ### Quick Install
@@ -319,7 +319,7 @@ The project uses GitHub Actions for CI/CD:
 **CI Pipeline** (`.github/workflows/ci.yml`):
 
 - Runs on push to `main`/`dev` and all PRs
-- Multi-version testing (Python 3.9, 3.11, 3.13)
+- Multi-version testing (Python 3.10, 3.12, 3.14)
 - Linting with Ruff
 - Security scanning with Gitleaks
 - Test suite with coverage reporting
@@ -329,20 +329,16 @@ The project uses GitHub Actions for CI/CD:
 
 - Builds multi-platform images (amd64, arm64)
 - Pushes to GitHub Container Registry
-- Optional: Docker Hub (configure secrets)
 
 **Release** (`.github/workflows/release.yml`):
 
 - Triggered by version tags (`v*.*.*`)
 - Creates GitHub Release with changelog
-- Publishes to PyPI (if configured)
-- Builds and tags Docker images
+- Builds and tags Docker images to GHCR
 
 **Required Secrets:**
 
 - `CODECOV_TOKEN` - For coverage reporting
-- `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` - (Optional) Docker Hub
-- `PYPI_TOKEN` - (Optional) PyPI publishing
 
 ### Project Structure
 

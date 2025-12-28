@@ -1,6 +1,6 @@
 # Multi-stage Dockerfile for pyVIN
 # Stage 1: Builder - Install dependencies and run tests
-FROM python:3.13-slim AS builder
+FROM python:3.14-slim AS builder
 
 # Set working directory
 WORKDIR /app
@@ -26,7 +26,7 @@ COPY tests/ ./tests/
 # RUN pip install -e ".[dev]" && pytest
 
 # Stage 2: Runtime - Minimal production image
-FROM python:3.13-slim
+FROM python:3.14-slim
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
@@ -45,7 +45,7 @@ RUN useradd -m -u 1000 pyvin && \
 WORKDIR /app
 
 # Copy installed packages from builder
-COPY --from=builder /usr/local/lib/python3.13/site-packages /usr/local/lib/python3.13/site-packages
+COPY --from=builder /usr/local/lib/python3.14/site-packages /usr/local/lib/python3.14/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Copy application files
