@@ -169,8 +169,8 @@ Deploy to Streamlit Cloud for free hosting:
 # Pull and run the latest version
 docker run -p 8501:8501 ghcr.io/bmj2728/pyvin:latest
 
-# Or use a specific version
-docker run -p 8501:8501 ghcr.io/bmj2728/pyvin:0.1.4
+# Or use a specific version (e.g., 0.1.5)
+docker run -p 8501:8501 ghcr.io/bmj2728/pyvin:<version>
 ```
 
 **Build locally:**
@@ -301,34 +301,6 @@ pre-commit run --all-files
 - **Ruff** - Linting and formatting
 - Markdown linting
 - Python syntax checking
-
-### Continuous Integration
-
-The project uses GitHub Actions for CI/CD:
-
-**CI Pipeline** (`.github/workflows/ci.yml`):
-
-- Runs on push to `main`/`dev` and all PRs
-- Multi-version testing (Python 3.10, 3.12, 3.14)
-- Linting with Ruff
-- Security scanning with Gitleaks
-- Test suite with coverage reporting
-- Uploads coverage to Codecov
-
-**Docker Build** (`.github/workflows/docker.yml`):
-
-- Builds multi-platform images (amd64, arm64)
-- Pushes to GitHub Container Registry
-
-**Release** (`.github/workflows/release.yml`):
-
-- Triggered by version tags (`v*.*.*`)
-- Creates GitHub Release with changelog
-- Builds and tags Docker images to GHCR
-
-**Required Secrets:**
-
-- `CODECOV_TOKEN` - For coverage reporting
 
 ### Project Structure
 
