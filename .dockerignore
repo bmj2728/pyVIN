@@ -48,10 +48,8 @@ docs/
 *.md
 
 # Development files
-tests/
 .ruff_cache/
 .mypy_cache/
-pyproject.toml
 
 # Logs
 *.log
