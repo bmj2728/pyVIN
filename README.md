@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/bmj2728/pyVIN/actions/workflows/ci.yml/badge.svg)](https://github.com/bmj2728/pyVIN/actions/workflows/ci.yml)
 [![Docker Build](https://github.com/bmj2728/pyVIN/actions/workflows/docker.yml/badge.svg)](https://github.com/bmj2728/pyVIN/actions/workflows/docker.yml)
-[![codecov](https://codecov.io/gh/bmj2728/pyVIN/branch/main/graph/badge.svg)](https://codecov.io/gh/bmj2728/pyVIN)
+[![codecov](https://codecov.io/gh/bmj2728/pyVIN/graph/badge.svg?token=m8WBd4CTFJ)](https://codecov.io/gh/bmj2728/pyVIN)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
@@ -21,7 +21,7 @@ A Python-based Vehicle Identification Number (VIN) decoder that provides compreh
 - [Deployment](#deployment)
   - [Streamlit Cloud](#streamlit-cloud)
   - [Docker](#docker)
-  - [Self-Hosted](#self-hosted)
+  - [PyPI](#pypi)
 - [Development](#development)
   - [Setup](#setup)
   - [Running Tests](#running-tests)
@@ -163,7 +163,17 @@ Deploy to Streamlit Cloud for free hosting:
 
 ### Docker
 
-Build and run with Docker:
+**Using pre-built images from GitHub Container Registry:**
+
+```bash
+# Pull and run the latest version
+docker run -p 8501:8501 ghcr.io/bmj2728/pyvin:latest
+
+# Or use a specific version
+docker run -p 8501:8501 ghcr.io/bmj2728/pyvin:0.1.4
+```
+
+**Build locally:**
 
 ```bash
 # Build the image
@@ -179,54 +189,34 @@ docker run -p 8501:8501 pyvin
 version: '3.8'
 services:
   pyvin:
-    build: .
+    image: ghcr.io/bmj2728/pyvin:latest
     ports:
       - "8501:8501"
-    environment:
-      - NHTSA_BASE_URL=https://vpic.nhtsa.dot.gov/api/vehicles
     restart: unless-stopped
 ```
 
-### Self-Hosted
+### PyPI
 
-Deploy on your own server:
+Install from PyPI:
 
 ```bash
-# Install dependencies
+# Install the package
+pip install pyVIN-UI
+
+# Run the application
+streamlit run $(python -c "import src.ui.app as app; print(app.__file__)")
+```
+
+Or install from source for the latest development version:
+
+```bash
+# Clone and install
+git clone https://github.com/bmj2728/pyVIN.git
+cd pyVIN
 pip install -e .
 
-# Run with production settings
-streamlit run src/ui/app.py \
-  --server.port 8501 \
-  --server.address 0.0.0.0 \
-  --server.headless true
-```
-
-**Using systemd (Linux):**
-
-Create `/etc/systemd/system/pyvin.service`:
-
-```ini
-[Unit]
-Description=pyVIN VIN Decoder
-After=network.target
-
-[Service]
-Type=simple
-User=www-data
-WorkingDirectory=/opt/pyvin
-ExecStart=/usr/bin/streamlit run src/ui/app.py --server.port 8501
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Enable and start:
-
-```bash
-sudo systemctl enable pyvin
-sudo systemctl start pyvin
+# Run
+streamlit run src/ui/app.py
 ```
 
 ## Development
