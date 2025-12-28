@@ -9,14 +9,14 @@ package-mode = false
 name = "pyVIN-UI"
 dynamic = ["version"]
 requires-python = ">=3.10"
-
-[tool.setuptools_scm]
-# Automatically gets version from git tags
 dependencies = [
     "requests",
     "streamlit",
     "pydantic>=2.0",
 ]
+
+[tool.setuptools_scm]
+# Automatically gets version from git tags
 
 [project.optional-dependencies]
 dev = [
