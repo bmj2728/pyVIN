@@ -11,16 +11,14 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy dependency files
+# Copy dependency files and source
 COPY pyproject.toml ./
+COPY src/ ./src/
+COPY tests/ ./tests/
 
 # Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -e .
-
-# Copy source code
-COPY src/ ./src/
-COPY tests/ ./tests/
 
 # Run tests (optional - comment out for faster builds)
 # RUN pip install -e ".[dev]" && pytest
