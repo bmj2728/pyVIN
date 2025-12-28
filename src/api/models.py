@@ -96,13 +96,17 @@ class VINDecodeResult(BaseModel):
     plant_company: Optional[str] = Field(None, alias="PlantCompanyName",
                                        description="Company that manufactured")
 
-    # Error handling
+    # Error handling and suggestions
     error_code: Optional[str] = Field(None, alias="ErrorCode",
                                       description="Error code from NHTSA API")
     error_text: Optional[str] = Field(None, alias="ErrorText",
                                       description="Error text from NHTSA API")
     additional_error_text: Optional[str] = Field(None, alias="AdditionalErrorText",
                                                  description="Additional Error text from NHTSA API")
+    suggested_vin: Optional[str] = Field(None, alias="SuggestedVIN",
+                                        description="Suggested VIN from NHTSA API")
+    possible_values: Optional[str] = Field(None, alias="PossibleValues",
+                                          description="Possible values for VIN positions")
 
     class Config:
         populate_by_name = True  # Allow both alias and field name

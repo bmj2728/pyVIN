@@ -53,10 +53,12 @@ FIELD_LABELS = {
     "plant_state": "Plant State",
     "plant_company": "Plant Company",
 
-    # Errors
+    # Errors and Suggestions
     "error_code": "Error Code",
     "error_text": "Error Text",
     "additional_error_text": "Additional Error Text",
+    "suggested_vin": "Suggested VIN",
+    "possible_values": "Possible Values",
 }
 
 # Field descriptions for tooltips (extracted from Pydantic model)
@@ -110,6 +112,8 @@ FIELD_DESCRIPTIONS = {
     "error_code": "Error code from NHTSA API",
     "error_text": "Error text from NHTSA API",
     "additional_error_text": "Additional error text from NHTSA API",
+    "suggested_vin": "Suggested VIN from NHTSA API for correcting input",
+    "possible_values": "Possible values for ambiguous VIN positions",
 }
 
 __all__ = ["FIELD_LABELS", "FIELD_DESCRIPTIONS"]
