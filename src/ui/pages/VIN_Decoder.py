@@ -1,10 +1,10 @@
 """VIN Decoder page for pyVIN application"""
 
 import streamlit as st
-from src.api.client import decode_vin_values_extended
-from src.formatting.response import filter_non_null
-from src.ui.components.results_table import display_results_table
-from src.exceptions import VINDecoderError
+from api.client import decode_vin_values_extended
+from formatting.response import filter_non_null
+from ui.components.results_table import display_results_table
+from exceptions import VINDecoderError
 
 st.set_page_config(page_title="VIN Decoder - pyVIN", layout="wide")
 

@@ -1,10 +1,9 @@
 """Results table component for displaying VIN decode results"""
 
-import streamlit as st
 from typing import Any, Dict
 
-# pandas not needed - using HTML table
-from src.formatting.fields import FIELD_LABELS, FIELD_DESCRIPTIONS
+import streamlit as st
+from formatting.fields import FIELD_LABELS, FIELD_DESCRIPTIONS
 
 
 def display_results_table(filtered_data: Dict[str, Any]) -> None:

@@ -1,5 +1,5 @@
 import re
-from src.exceptions import InvalidVINError
+from exceptions import InvalidVINError
 
 VIN_PATTERN = re.compile(r"^[A-HJ-NPR-Z0-9*]{17}$")  # * allowed for wildcards
 

@@ -1,3 +1,3 @@
-from src.formatting.response import filter_non_null
+from formatting.response import filter_non_null
 
 __all__ = ["filter_non_null"]

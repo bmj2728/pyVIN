@@ -79,7 +79,7 @@ pip install -e ".[dev]"
 Launch the Streamlit web application:
 
 ```bash
-streamlit run src/ui/app.py
+PYTHONPATH=src streamlit run src/ui/Home.py
 ```
 
 The app will open in your browser at `http://localhost:8501`
