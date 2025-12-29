@@ -154,15 +154,19 @@ services:
 
 ### PyPI
 
-Install from PyPI:
+Available on PyPI for library use:
 
 ```bash
-# Install the package
 pip install pyVIN-UI
-
-# Run the application
-streamlit run $(python -c "import src.ui.Home as app; print(app.__file__)")
 ```
+
+Then import in your code:
+
+```python
+from src.api.client import decode_vin_values_extended
+```
+
+Honestly though? Just clone the repo if you want to hack on it. It's MIT licensed - do whatever you want with it.
 
 ## API Reference
 
