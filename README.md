@@ -51,6 +51,15 @@ A Python-based Vehicle Identification Number (VIN) decoder that provides compreh
 
 ![Decoded VIN Results](screenshots/pyvin_results.png)
 
+### VIN Suggestions for Partial Matches
+
+![VIN Suggestions](screenshots/pyvin_vin_suggestion.png)
+
+When using wildcards, pyVIN provides intelligent suggestions and shows possible values for unknown positions. For example:
+
+- `1GC*K23U64F177548` → Suggests `1GCHK23U64F177548` with possible values `(4:H)`
+- `1GC*K23*64F177548` → Less certain, shows `1GC!K23!64F177548` with multiple options `(4:ABCDEFGHJKLM)(8:12346789ABCDEGHNPRSTUVWXYZ)`
+
 ## Demo
 
 **[Try it live!](https://py-vin.streamlit.app/)**
