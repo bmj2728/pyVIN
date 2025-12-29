@@ -1,5 +1,6 @@
 # pyVIN - Vehicle Identification Number Decoder
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://py-vin.streamlit.app/)
 [![CI](https://github.com/bmj2728/pyVIN/actions/workflows/ci.yml/badge.svg)](https://github.com/bmj2728/pyVIN/actions/workflows/ci.yml)
 [![Docker Build](https://github.com/bmj2728/pyVIN/actions/workflows/docker.yml/badge.svg)](https://github.com/bmj2728/pyVIN/actions/workflows/docker.yml)
 [![codecov](https://codecov.io/gh/bmj2728/pyVIN/graph/badge.svg?token=m8WBd4CTFJ)](https://codecov.io/gh/bmj2728/pyVIN)
@@ -13,6 +14,7 @@ A Python-based Vehicle Identification Number (VIN) decoder that provides compreh
 ## Table of Contents
 
 - [Features](#features)
+- [Gallery](#gallery)
 - [Demo](#demo)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -36,7 +38,23 @@ A Python-based Vehicle Identification Number (VIN) decoder that provides compreh
 - 🚀 **High Performance** - LRU caching for faster repeated queries
 - 🧪 **Well Tested** - 97%+ code coverage with 100 passing tests
 
+## Gallery
+
+### Home Screen
+
+![pyVIN Home Screen](screenshots/pyvin_home.png)
+
+### VIN Decoder
+
+![VIN Decoder Interface](screenshots/pyvin_decode.png)
+
+### Sample Results
+
+![Decoded VIN Results](screenshots/pyvin_results.png)
+
 ## Demo
+
+**[Try it live!](https://py-vin.streamlit.app/)**
 
 **Example VINs to try:**
 
