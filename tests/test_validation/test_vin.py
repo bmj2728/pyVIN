@@ -2,8 +2,8 @@
 
 import pytest
 from hypothesis import given, strategies as st
-from src.validation.vin import validate_and_normalize_vin, VIN_PATTERN
-from src.exceptions import InvalidVINError
+from validation.vin import validate_and_normalize_vin, VIN_PATTERN
+from exceptions import InvalidVINError
 
 
 class TestValidateAndNormalizeVIN:

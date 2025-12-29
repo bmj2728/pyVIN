@@ -3,9 +3,9 @@
 import pytest
 import responses
 from requests.exceptions import Timeout, ConnectionError
-from src.api.client import decode_vin_values_extended
-from src.api.models import VINDecodeResult
-from src.exceptions import APIError, NetworkError, InvalidVINError
+from api.client import decode_vin_values_extended
+from api.models import VINDecodeResult
+from exceptions import APIError, NetworkError, InvalidVINError
 
 
 class TestDecodeVINValuesExtended:

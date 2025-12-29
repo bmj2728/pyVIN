@@ -1,7 +1,7 @@
 """Tests for API models module"""
 
 from hypothesis import given, strategies as st
-from src.api.models import VINDecodeResult
+from api.models import VINDecodeResult
 
 
 class TestVINDecodeResult:
