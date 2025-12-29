@@ -19,16 +19,9 @@ A Python-based Vehicle Identification Number (VIN) decoder that provides compreh
   - [Web Interface](#web-interface)
   - [Python API](#python-api)
 - [Deployment](#deployment)
-  - [Streamlit Cloud](#streamlit-cloud)
   - [Docker](#docker)
   - [PyPI](#pypi)
-- [Development](#development)
-  - [Setup](#setup)
-  - [Running Tests](#running-tests)
-  - [Code Quality](#code-quality)
-  - [Project Structure](#project-structure)
 - [API Reference](#api-reference)
-- [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -65,11 +58,8 @@ A Python-based Vehicle Identification Number (VIN) decoder that provides compreh
 git clone https://github.com/bmj2728/pyVIN.git
 cd pyVIN
 
-# Install dependencies
-pip install -e .
-
-# For development (includes testing tools)
-pip install -e ".[dev]"
+# Install
+pip install .
 ```
 
 ## Usage
@@ -138,29 +128,6 @@ for field, value in filtered_data.items():
 
 ## Deployment
 
-### Streamlit Cloud
-
-Deploy to Streamlit Cloud for free hosting:
-
-1. **Push to GitHub**
-
-   ```bash
-   git add .
-   git commit -m "Ready for deployment"
-   git push origin main
-   ```
-
-2. **Deploy on Streamlit Cloud**
-   - Go to [share.streamlit.io](https://share.streamlit.io)
-   - Click "New app"
-   - Select your repository: `bmj2728/pyVIN`
-   - Main file path: `src/ui/Home.py`
-   - Click "Deploy"
-
-3. **Configure (Optional)**
-   - Add custom domain in settings
-   - Set environment variables if needed
-
 ### Docker
 
 **Using pre-built images from GitHub Container Registry:**
@@ -171,16 +138,6 @@ docker run -p 8501:8501 ghcr.io/bmj2728/pyvin:latest
 
 # Or use a specific version (e.g., 0.1.5)
 docker run -p 8501:8501 ghcr.io/bmj2728/pyvin:<version>
-```
-
-**Build locally:**
-
-```bash
-# Build the image
-docker build -t pyvin .
-
-# Run the container
-docker run -p 8501:8501 pyvin
 ```
 
 **Docker Compose:**
@@ -205,134 +162,6 @@ pip install pyVIN-UI
 
 # Run the application
 streamlit run $(python -c "import src.ui.Home as app; print(app.__file__)")
-```
-
-Or install from source for the latest development version:
-
-```bash
-# Clone and install
-git clone https://github.com/bmj2728/pyVIN.git
-cd pyVIN
-pip install -e .
-
-# Run
-streamlit run src/ui/Home.py
-```
-
-## Development
-
-### Setup
-
-Set up your development environment:
-
-```bash
-# Clone and install
-git clone https://github.com/bmj2728/pyVIN.git
-cd pyVIN
-pip install -e ".[dev]"
-
-# Verify installation
-python -c "from src.api.client import decode_vin_values_extended; print('OK')"
-```
-
-### Running Tests
-
-Run the test suite with coverage:
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov=src --cov-report=term-missing
-
-# Generate HTML coverage report
-pytest --cov=src --cov-report=html
-open htmlcov/index.html
-
-# Run specific test file
-pytest tests/test_api/test_client.py -v
-
-# Run with fuzzing (longer tests)
-pytest --hypothesis-profile=default
-```
-
-**Current Test Stats:**
-
-- 100 tests passing
-- 97.5% code coverage
-- Includes property-based testing with Hypothesis
-
-### Code Quality
-
-Check and format code:
-
-```bash
-# Run linter
-ruff check src/ tests/
-
-# Auto-fix issues
-ruff check --fix src/ tests/
-
-# Format code
-ruff format src/ tests/
-```
-
-### Pre-commit Hooks
-
-Set up pre-commit hooks to automatically check code before commits:
-
-```bash
-# Install pre-commit
-pip install pre-commit
-
-# Install the git hooks
-pre-commit install
-
-# Run manually on all files
-pre-commit run --all-files
-```
-
-**Hooks included:**
-
-- Trailing whitespace removal
-- YAML/TOML validation
-- **Gitleaks** - Secret scanning
-- **Ruff** - Linting and formatting
-- Markdown linting
-- Python syntax checking
-
-### Project Structure
-
-```text
-pyVIN/
-├── src/
-│   ├── api/                 # NHTSA API client and models
-│   │   ├── client.py        # API interaction with caching
-│   │   └── models.py        # Pydantic models for responses
-│   ├── validation/          # VIN validation logic
-│   │   └── vin.py           # VIN format validation
-│   ├── formatting/          # Response formatting utilities
-│   │   ├── fields.py        # Field labels and descriptions
-│   │   └── response.py      # Response filtering
-│   ├── ui/                  # Streamlit web interface
-│   │   ├── app.py           # Home page
-│   │   ├── pages/
-│   │   │   └── VIN_Decoder.py  # VIN decoder page
-│   │   └── components/
-│   │       └── results_table.py  # Results display component
-│   ├── logs/                # Logging configuration
-│   ├── config.py            # Application configuration
-│   └── exceptions.py        # Custom exceptions
-├── tests/                   # Test suite
-│   ├── conftest.py          # Shared test fixtures
-│   ├── test_api/            # API tests
-│   ├── test_validation/     # Validation tests
-│   ├── test_formatting/     # Formatting tests
-│   └── test_logs/           # Logging tests
-├── pyproject.toml           # Project metadata and dependencies
-├── LICENSE                  # MIT License
-└── README.md               # This file
 ```
 
 ## API Reference
@@ -391,28 +220,6 @@ Filter out null/empty fields from a decode result.
 **Returns:**
 
 - `dict`: Dictionary with only populated fields
-
-## Contributing
-
-Contributions are welcome! Please follow these guidelines:
-
-1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Make your changes**
-   - Add tests for new functionality
-   - Ensure all tests pass (`pytest`)
-   - Follow code style (`ruff check`)
-4. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-5. **Push to the branch** (`git push origin feature/amazing-feature`)
-6. **Open a Pull Request**
-
-### Development Guidelines
-
-- Maintain 90%+ test coverage
-- Add docstrings to all public functions
-- Use type hints
-- Follow existing code style
-- Update README for new features
 
 ## License
 

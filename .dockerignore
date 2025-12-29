@@ -54,3 +54,5 @@ docs/
 # Logs
 *.log
 pyVIN.log
+.claude
+CLAUDE.md
