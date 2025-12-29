@@ -1,8 +1,8 @@
 """Tests for response formatting module"""
 
 from hypothesis import given, strategies as st
-from formatting.response import filter_non_null
-from api.models import VINDecodeResult
+from src.formatting.response import filter_non_null
+from src.api.models import VINDecodeResult
 
 
 class TestFilterNonNull:

@@ -1,7 +1,7 @@
 """Pytest configuration and shared fixtures"""
 
 import pytest
-from api.models import VINDecodeResult
+from src.api.models import VINDecodeResult
 
 
 @pytest.fixture

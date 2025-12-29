@@ -1,7 +1,7 @@
 """Tests for logging setup"""
 
 import logging
-from logs.logs import setup_logger
+from src.logs.logs import setup_logger
 
 
 class TestSetupLogger:

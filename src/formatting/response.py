@@ -1,4 +1,4 @@
-from api.models import VINDecodeResult
+from src.api.models import VINDecodeResult
 from typing import Dict, Any
 
 

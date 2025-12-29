@@ -3,7 +3,7 @@
 from typing import Any, Dict
 
 import streamlit as st
-from formatting.fields import FIELD_LABELS, FIELD_DESCRIPTIONS
+from src.formatting.fields import FIELD_LABELS, FIELD_DESCRIPTIONS
 
 
 def display_results_table(filtered_data: Dict[str, Any]) -> None:

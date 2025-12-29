@@ -79,7 +79,7 @@ pip install -e ".[dev]"
 Launch the Streamlit web application:
 
 ```bash
-PYTHONPATH=src streamlit run src/ui/Home.py
+streamlit run src/ui/Home.py
 ```
 
 The app will open in your browser at `http://localhost:8501`
@@ -154,7 +154,7 @@ Deploy to Streamlit Cloud for free hosting:
    - Go to [share.streamlit.io](https://share.streamlit.io)
    - Click "New app"
    - Select your repository: `bmj2728/pyVIN`
-   - Main file path: `src/ui/app.py`
+   - Main file path: `src/ui/Home.py`
    - Click "Deploy"
 
 3. **Configure (Optional)**
@@ -204,7 +204,7 @@ Install from PyPI:
 pip install pyVIN-UI
 
 # Run the application
-streamlit run $(python -c "import src.ui.app as app; print(app.__file__)")
+streamlit run $(python -c "import src.ui.Home as app; print(app.__file__)")
 ```
 
 Or install from source for the latest development version:
@@ -216,7 +216,7 @@ cd pyVIN
 pip install -e .
 
 # Run
-streamlit run src/ui/app.py
+streamlit run src/ui/Home.py
 ```
 
 ## Development

@@ -1,7 +1,7 @@
 """Tests for field mapping module"""
 
 from hypothesis import given, strategies as st
-from formatting.fields import FIELD_LABELS, FIELD_DESCRIPTIONS
+from src.formatting.fields import FIELD_LABELS, FIELD_DESCRIPTIONS
 
 
 class TestFieldLabels:

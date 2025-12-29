@@ -1,15 +1,15 @@
 from functools import lru_cache
 import requests
-from api.models import VINDecodeResult
-from config import (
+from src.api.models import VINDecodeResult
+from src.config import (
     CACHE_SIZE,
     DECODE_VIN_EXT_ENDPOINT,
     DEFAULT_FORMAT,
     NHTSA_BASE_URL,
     REQUEST_TIMEOUT,
 )
-from exceptions import APIError, NetworkError
-from validation.vin import validate_and_normalize_vin
+from src.exceptions import APIError, NetworkError
+from src.validation.vin import validate_and_normalize_vin
 
 
 @lru_cache(maxsize=CACHE_SIZE)

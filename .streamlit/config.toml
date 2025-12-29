@@ -1,0 +1,5 @@
+[server]
+headless = true
+
+[runner]
+# This is ignored but kept for reference
